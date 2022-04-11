@@ -4,13 +4,15 @@ import styles from './styles.module.scss'
 
 interface ButtonProps {
     title: string,
+    onOpenModal: () => void,
 }
 
-export const Button = ({ title }: ButtonProps) => {
+export const Button = ({ title, onOpenModal }: ButtonProps) => {
     return (
         <button
             type='button'
             className={styles.luxo}
+            onClick={onOpenModal}
         >
             {title}
         </button>
