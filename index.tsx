@@ -4,14 +4,14 @@ import React, { useState } from "react";
 import Head from "next/head";
 
 // components
-import { Button } from "../src/components/Button";
-import { ModalStandart } from "../src/components/ModalStandart";
-import { ModalLuxo } from "../src/components/ModalLuxo";
-import { ModalChaleP } from "../src/components/ModalChaleP";
-import { ModalChaleL } from "../src/components/ModalChaleL";
+import { Button } from "./src/components/Button";
+import { ModalStandart } from "./src/components/ModalStandart";
+import { ModalLuxo } from "./src/components/ModalLuxo";
+import { ModalChaleP } from "./src/components/ModalChaleP";
+import { ModalChaleL } from "./src/components/ModalChaleL";
 
 // styles
-import styles from '../styles/home.module.scss'
+import styles from './styles/home.module.scss'
 
 
 export default function Home() {
