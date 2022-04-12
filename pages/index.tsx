@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 // next components
-import Image from "next/image";
 import Head from "next/head";
 
 // components
@@ -10,9 +9,6 @@ import { ModalStandart } from "../src/components/ModalStandart";
 import { ModalLuxo } from "../src/components/ModalLuxo";
 import { ModalChaleP } from "../src/components/ModalChaleP";
 import { ModalChaleL } from "../src/components/ModalChaleL";
-
-// images
-import logo from '../public/images/logo.svg'
 
 // styles
 import styles from '../styles/home.module.scss'
@@ -60,13 +56,13 @@ export default function Home() {
   return (
     <>
     <Head>
-      <title>Orçamento | Hotel Fazenda Pedra do Rodeadouro</title>
+      <title>Budget | Hotelaria</title>
     </Head>
 
     <main className={styles.contentContainer}>
       <section className={styles.content}> 
-      <Image src={logo} alt='logo' width={100} />
-      <h1>Hotel Fazenda <br /> Pedra do Rodeadouro</h1>
+      {/* <Image src={logo} alt='logo' width={100} /> */}
+      <h1>Hotel <br /> Orçamentos</h1>
 
       <h3>Selecione uma categoria</h3>
 
