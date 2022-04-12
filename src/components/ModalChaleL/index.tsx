@@ -1,28 +1,36 @@
+// React
 import React, { useState } from 'react';
-import styles from './styles.module.scss'
+import ReactModal from 'react-modal';
+
+// Next components
 import Image from 'next/image';
 
+// images
 import close from '../../../public/images/close.svg';
 
-import ReactModal from 'react-modal';
+// styles
+import styles from './styles.module.scss'
+
 
 interface ModalProps {
     isOpen: boolean,
     onRequestClose: () => void,
 }
 
-export const Modal = ({ isOpen, onRequestClose }: ModalProps) => {
+export const ModalChaleL = ({ isOpen, onRequestClose }: ModalProps) => {
     const [people, setPeople] = useState(0);
     const [days, setDays] = useState(0);
 
-   const [total, setTotal] = useState(0);
+   const [budget, setBudget] = useState(0);
 
-    function handleTotal() {
-        setTotal(people * days);
+    function handleBudget() {
+        setBudget(people / days);
+
+        setPeople(0);
+        setDays(0);
     }   
 
     return (
-        <div className={styles.container}>
         <ReactModal
         contentLabel='Orçamento'
         ariaHideApp={false} 
@@ -59,7 +67,7 @@ export const Modal = ({ isOpen, onRequestClose }: ModalProps) => {
             <button
                 className={styles.rate}
                 type='button'
-                onClick={handleTotal}
+                onClick={handleBudget}
             >
                 Calcular
             </button>
@@ -68,9 +76,8 @@ export const Modal = ({ isOpen, onRequestClose }: ModalProps) => {
                 {new Intl.NumberFormat('pt-BR', {
                     style: 'currency',
                     currency: 'BRL'
-                }).format(total)}
+                }).format(budget)}
             </h2>
         </ReactModal>
-        </div>
     );
 }

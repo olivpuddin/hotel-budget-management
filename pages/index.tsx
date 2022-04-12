@@ -1,41 +1,60 @@
 import React, { useState } from "react";
-import logo from '../public/images/logo.svg'
 
+// next components
 import Image from "next/image";
 import Head from "next/head";
 
-import styles from '../styles/home.module.scss'
+// components
 import { Button } from "../src/components/Button";
-import { Modal } from "../src/components/Modal";
+import { ModalStandart } from "../src/components/ModalStandart";
+import { ModalLuxo } from "../src/components/ModalLuxo";
+import { ModalChaleP } from "../src/components/ModalChaleP";
+import { ModalChaleL } from "../src/components/ModalChaleL";
+
+// images
+import logo from '../public/images/logo.svg'
+
+// styles
+import styles from '../styles/home.module.scss'
 
 
 export default function Home() {
-  const [isNewTransactionModalOpen, setisNewTransactionModalOpen] = useState(false);
-
-  function handleOpenNewTransactionModal() {
-    setisNewTransactionModalOpen(true);
-  }
-
-  function handleCloseNewTransactionModal() {
-    setisNewTransactionModalOpen(false);
-  }
+  const [modalStandart, setModalStandart] = useState(false);
+  const [modalLuxo, setModalLuxo] = useState(false);
+  const [modalChaleP, setModalChaleP] = useState(false);
+  const [modalChaleL, setModalChaleL] = useState(false);
 
   function handleStandart() {
-
+    setModalStandart(true);
   }
 
   function handleLuxo() {
-
+    setModalLuxo(true);
   }
 
   function handleChaleP() {
-
+    setModalChaleP(true);
   }
 
   function handleChaleL() {
-
+    setModalChaleL(true);
   }
 
+  function handleCloseModalStandart() {
+    setModalStandart(false);
+  }
+
+  function handleCloseModalLuxo() {
+    setModalLuxo(false);
+  }
+
+  function handleCloseModalChaleP() {
+    setModalChaleP(false);
+  }
+
+  function handleCloseModalChaleL() {
+    setModalChaleL(false);
+  }
 
 
   return (
@@ -52,21 +71,35 @@ export default function Home() {
       <h3>Selecione uma categoria</h3>
 
       <div className={styles.buttons}>
-        <Button title="Standart" onOpenModal={handleOpenNewTransactionModal} />
-        <Button title="Luxo" onOpenModal={handleOpenNewTransactionModal} />
-        <Button title="Chalé Vista Pedra" onOpenModal={handleOpenNewTransactionModal} />
-        <Button title="Chalé Vista Lago" onOpenModal={handleOpenNewTransactionModal} />
+        <Button title="Standart" onOpenModal={handleStandart} />
+        <Button title="Luxo" onOpenModal={handleLuxo} />
+        <Button title="Chalé Vista Pedra" onOpenModal={handleChaleP} />
+        <Button title="Chalé Vista Lago" onOpenModal={handleChaleL} />
       </div>
 
-      <Modal 
-        isOpen={isNewTransactionModalOpen} 
-        onRequestClose={handleCloseNewTransactionModal} 
+      <ModalStandart
+        isOpen={modalStandart} 
+        onRequestClose={handleCloseModalStandart}
+      />
+
+      <ModalLuxo
+        isOpen={modalLuxo} 
+        onRequestClose={handleCloseModalLuxo}
+      />
+
+      <ModalChaleP
+        isOpen={modalChaleP} 
+        onRequestClose={handleCloseModalChaleP}
+      />
+
+      <ModalChaleL
+        isOpen={modalChaleL} 
+        onRequestClose={handleCloseModalChaleL}
       />
 
       <p>Developed by Bruna Oliveira, © 2022</p>
       </section>
     </main>
-
     </>
   );
 }
