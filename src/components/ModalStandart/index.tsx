@@ -24,8 +24,26 @@ export const ModalStandart = ({ isOpen, onRequestClose }: ModalProps) => {
     const [budget, setBudget] = useState(0);
 
     function handleBudget() {
-        setBudget(people * days);
-
+        switch (people) {
+            case 2:
+                setBudget(615 * days);
+                break;
+            case 3:
+                setBudget(745 * days);
+                break;
+            case 4:
+                setBudget(865 * days);
+                break;
+            case 5:
+                setBudget(985 * days);
+                break;
+            case 6:
+                setBudget(1105 * days);
+                break;
+            default:
+                setBudget(0);
+        }
+ 
         setPeople(0);
         setDays(0);
     }   

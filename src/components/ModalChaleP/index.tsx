@@ -24,8 +24,26 @@ export const ModalChaleP = ({ isOpen, onRequestClose }: ModalProps) => {
    const [budget, setBudget] = useState(0);
 
     function handleBudget() {
-        setBudget(people - days);
-
+        switch (people) {
+            case 2:
+                setBudget(750 * days);
+                break;
+            case 3:
+                setBudget(910 * days);
+                break;
+            case 4:
+                setBudget(1055 * days);
+                break;
+            case 5:
+                setBudget(1200 * days);
+                break;
+            case 6:
+                setBudget(1350 * days);
+                break;
+            default:
+                setBudget(0);
+        }
+ 
         setPeople(0);
         setDays(0);
     }   
