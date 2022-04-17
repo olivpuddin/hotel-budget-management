@@ -6,6 +6,7 @@ import ReactModal from 'react-modal';
 import { ModalButton } from '../ModalForm/ModalButton';
 import { ModalInput } from '../ModalForm/ModalInput';
 import { ModalSelect } from '../ModalForm/ModalSelect';
+import { ModalSelectPeople } from '../ModalForm/ModalSelectPeople';
 
 // Next components
 import Image from 'next/image';
@@ -77,7 +78,7 @@ export const ModalLuxo = ({ isOpen, onRequestClose }: ModalProps) => {
                 </button>
 
                 <p>Pessoas</p>
-                <ModalInput placeholder='Digite a quantidade de pessoas' onChange={event => setPeople(Number(event.target.value))} />
+                <ModalSelectPeople onChange={event => setPeople(Number(event.target.value))} /> 
 
                 <p>Diárias</p>
                 <ModalInput placeholder='Digite a quantidade de diárias' onChange={event => setDays(Number(event.target.value))} />

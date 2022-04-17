@@ -11,7 +11,7 @@ export const ModalSelect = ({ onChange }: SelectProps) => {
                 <option selected disabled>Selecione uma opção</option>
                 <option>Sim</option>
                 <option>Não</option>
-        </select>
+            </select>
         </>
     );
 }
