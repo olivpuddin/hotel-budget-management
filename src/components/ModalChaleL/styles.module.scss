@@ -5,10 +5,23 @@
         font-weight: bold;
         font-size: 2.5rem;
     }
+
+    h3 {
+        color: var(--black);
+
+        & + h3 {
+            margin-top: 1rem;
+        }
+    }
+
+    p {
+        color: var(--white);
+    }
     
     select {
         border-radius: 1rem;
         height: 3rem;
-        border: 1px solid var(--green-700);
+        border: 1px solid var(--green-400);
+        background-color: var(--text);
     }
 }

@@ -8,8 +8,12 @@
   --white: #FFFFFF;
   --black: #000;
 
+  --green-400: #84cc63;
   --green-500: #7f9153;
+  // --green-600: #7dc75a;
   --green-700: #193720;
+
+  --text: #D3D3D3;
 }
 
 @media (max-width: 1080px) {
@@ -25,7 +29,7 @@
 }
 
 body {
-  background: var(--green-700);
+  background: var(--black);
   color: var(--white);
 }
 
@@ -40,7 +44,7 @@ input {
   border-radius: 1rem;
 
   border: 1px solid #d7d7d7;
-  background: #e7e9ee;
+  background: var(--text);
 
   font-weight: 400;
   font-size: 1rem;
@@ -81,7 +85,7 @@ button {
 .react-modal-content {
   width: 100%;
   max-width: 576px;
-  background: var(--green-500);
+  background: var(--green-400);
   padding: 3rem;
   position: relative;
   border-radius: 0.24rem;

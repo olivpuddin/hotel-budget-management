@@ -5,6 +5,7 @@ import ReactModal from 'react-modal';
 // components
 import { ModalButton } from '../ModalForm/ModalButton';
 import { ModalInput } from '../ModalForm/ModalInput';
+import { ModalSelect } from '../ModalForm/ModalSelect';
 
 // Next components
 import Image from 'next/image';
@@ -14,7 +15,6 @@ import close from '../../../public/images/close.svg';
 
 // styles
 import styles from './styles.module.scss'
-import { ModalSelect } from '../ModalForm/ModalSelect';
 
 
 interface ModalProps {
@@ -87,19 +87,19 @@ export const ModalLuxo = ({ isOpen, onRequestClose }: ModalProps) => {
 
                 <ModalButton onClick={handleBudget} />
 
-                <h2>Valor do orçamento: <br />
+                <h3>Valor do orçamento: <br />
                     {new Intl.NumberFormat('pt-BR', {
                         style: 'currency',
                         currency: 'BRL'
                     }).format(budget)}
-                </h2>
+                </h3>
 
                 {payment === 'Sim' &&
-                    <h2>Valor do orçamento com desconto: <br />
+                    <h3>Valor do orçamento com desconto: <br />
                     {new Intl.NumberFormat('pt-BR', {
                         style: 'currency',
                         currency: 'BRL'
-                    }).format((budget) - (0.1 * budget))}</h2>
+                    }).format((budget) - (0.1 * budget))}</h3>
                 }
             </div>
         </ReactModal>
