@@ -1,5 +1,7 @@
 import React from 'react';
 
+import styles from './styles.module.scss'
+
 interface SelectProps {
     onChange: (event: any) => void;
 }
@@ -7,7 +9,7 @@ interface SelectProps {
 export const ModalSelect = ({ onChange }: SelectProps) => {
     return (
         <>
-            <select onChange={onChange}>
+            <select onChange={onChange} className={styles.select}>
                 <option selected disabled>Selecione uma opção</option>
                 <option>Sim</option>
                 <option>Não</option>

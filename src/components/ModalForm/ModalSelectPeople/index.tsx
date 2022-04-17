@@ -1,5 +1,7 @@
 import React from 'react';
 
+import styles from './styles.module.scss'
+
 interface Props {
     onChange: (event: any) => void;
 }
@@ -7,7 +9,7 @@ interface Props {
 export const ModalSelectPeople = ({ onChange }: Props) => {
     return (
         <>
-            <select onChange={onChange}>
+            <select onChange={onChange} className={styles.select}>
                 <option selected disabled>Selecione a quantidade de pessoas</option>
                 <option>2</option>
                 <option>3</option>
