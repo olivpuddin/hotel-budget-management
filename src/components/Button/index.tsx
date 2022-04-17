@@ -11,7 +11,7 @@ export const Button = ({ title, onOpenModal }: ButtonProps) => {
     return (
         <button
             type='button'
-            className={styles.luxo}
+            className={styles.buttons}
             onClick={onOpenModal}
         >
             {title}

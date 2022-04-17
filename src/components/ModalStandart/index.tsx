@@ -2,6 +2,10 @@
 import React, { useState } from 'react';
 import ReactModal from 'react-modal';
 
+// components
+import { ModalButton } from '../ModalForm/ModalButton';
+import { ModalInput } from '../ModalForm/ModalInput';
+
 // Next components
 import Image from 'next/image';
 
@@ -10,6 +14,7 @@ import close from '../../../public/images/close.svg';
 
 // styles
 import styles from './styles.module.scss'
+import { ModalSelect } from '../ModalForm/ModalSelect';
 
 
 interface ModalProps {
@@ -20,24 +25,25 @@ interface ModalProps {
 export const ModalStandart = ({ isOpen, onRequestClose }: ModalProps) => {
     const [people, setPeople] = useState(0);
     const [days, setDays] = useState(0);
+    const [payment, setPayment] = useState('');
 
     const [budget, setBudget] = useState(0);
 
     function handleBudget() {
-        switch (people) {
-            case 2:
+        switch (true) {
+            case (people === 2):
                 setBudget(615 * days);
                 break;
-            case 3:
+            case (people === 3):
                 setBudget(745 * days);
                 break;
-            case 4:
+            case (people === 4):
                 setBudget(865 * days);
                 break;
-            case 5:
+            case (people === 5):
                 setBudget(985 * days);
                 break;
-            case 6:
+            case (people === 6):
                 setBudget(1105 * days);
                 break;
             default:
@@ -46,8 +52,8 @@ export const ModalStandart = ({ isOpen, onRequestClose }: ModalProps) => {
  
         setPeople(0);
         setDays(0);
-    }   
-
+    }
+   
     return (
         <ReactModal
         contentLabel='Orçamento'
@@ -57,45 +63,45 @@ export const ModalStandart = ({ isOpen, onRequestClose }: ModalProps) => {
         overlayClassName='react-modal-overlay'
         className='react-modal-content'
         >
-            <h1 className={styles.title}>Orçamento</h1>
 
-            <button 
-                type='button' 
-                onClick={onRequestClose} 
-                className='react-modal-close'
-                > 
-                <Image src={close} alt="Fechar modal" />
-            </button>
+            <div className={styles.wrapper}>
 
-            <p>Quantidade de Pessoas</p>
-            <input 
-                type='number'
-                placeholder='Quantidade de Pessoas'
-                value={people}
-                onChange={event => setPeople(Number(event.target.value))}
-            />
+                <h1>Orçamento</h1>
 
-            <p>Quantidade de dias</p>
-            <input 
-                placeholder='Quantidade de dias'
-                value={days}
-                onChange={event => setDays(Number(event.target.value))}
-            />
+                <button 
+                    type='button' 
+                    onClick={onRequestClose} 
+                    className='react-modal-close'
+                    > 
+                    <Image src={close} alt="Fechar modal" />
+                </button>
 
-            <button
-                className={styles.rate}
-                type='button'
-                onClick={handleBudget}
-            >
-                Calcular
-            </button>
+                <p>Pessoas</p>
+                <ModalInput placeholder='Digite a quantidade de pessoas' onChange={event => setPeople(Number(event.target.value))} />
 
-            <h2>Valor do orçamento: <br />
-                {new Intl.NumberFormat('pt-BR', {
-                    style: 'currency',
-                    currency: 'BRL'
-                }).format(budget)}
-            </h2>
+                <p>Diárias</p>
+                <ModalInput placeholder='Digite a quantidade de diárias' onChange={event => setDays(Number(event.target.value))} />
+              
+                <p>O pagamento será integral?</p>
+                <ModalSelect onChange={event => setPayment(event.target.value)} />
+
+                <ModalButton onClick={handleBudget} />
+
+                <h2>Valor do orçamento: <br />
+                    {new Intl.NumberFormat('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL'
+                    }).format(budget)}
+                </h2>
+
+                {payment === 'Sim' &&
+                    <h2>Valor do orçamento com desconto: <br />
+                    {new Intl.NumberFormat('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL'
+                    }).format((budget) - (0.1 * budget))}</h2>
+                }
+            </div>
         </ReactModal>
     );
 }
