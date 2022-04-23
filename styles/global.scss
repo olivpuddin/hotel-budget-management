@@ -5,13 +5,10 @@
 }
 
 :root {
-  --white: #FFFFFF;
-  --black: #000;
+  --primary: #CEF9F2;
+  --secondary: #1C1D21;
 
-  --green-400: #84cc63;
-  --green-500: #7f9153;
-  // --green-600: #7dc75a;
-  --green-700: #193720;
+  --white: #FFFFFF;
 
   --text: #D3D3D3;
 }
@@ -29,7 +26,7 @@
 }
 
 body {
-  background: var(--black);
+  background: var(--secondary);
   color: var(--white);
 }
 
@@ -69,7 +66,7 @@ button {
 }
 
 .react-modal-overlay {
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--secondary);
 
   position: fixed;
   top: 0;
@@ -85,7 +82,7 @@ button {
 .react-modal-content {
   width: 100%;
   max-width: 576px;
-  background: var(--green-400);
+  background: var(--primary);
   padding: 3rem;
   position: relative;
   border-radius: 0.24rem;

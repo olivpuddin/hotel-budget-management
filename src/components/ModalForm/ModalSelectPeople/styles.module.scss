@@ -1,5 +1,5 @@
 .select {
-    border: 1px solid var(--green-400);
+    border: 1px solid var(--primary);
     border-radius: 1rem;
 
     height: 3rem;
@@ -8,4 +8,6 @@
     margin-bottom: 1rem;
 
     background-color: var(--text);
+
+    cursor: pointer;
 }

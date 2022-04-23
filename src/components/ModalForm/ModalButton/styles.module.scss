@@ -2,8 +2,8 @@
     width: 100%;
     padding: 0 1.5rem;
     height: 4rem;
-    background: var(--green-700);
-    color: #fff;
+    background: var(--secondary);
+    color: var(--white);
     border-radius: 0.25rem;
     border: 0;
     font-size: 1rem;
@@ -13,6 +13,6 @@
     transition: filter(0.2s);
 
     &:hover {
-        filter: brightness(0.9);
+        filter: brightness(0.7);
     }
 }
