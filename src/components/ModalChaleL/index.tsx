@@ -1,6 +1,8 @@
 // React
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactModal from "react-modal";
+import DatePicker from "react-datepicker";
+import moment from "moment";
 
 // components
 import { ModalButton } from "../ModalForm/ModalButton";
@@ -23,36 +25,69 @@ interface ModalProps {
 }
 
 export const ModalChaleL = ({ isOpen, onRequestClose }: ModalProps) => {
-  const [people, setPeople] = useState(0);
   const [days, setDays] = useState(0);
   const [payment, setPayment] = useState("");
-
   const [budget, setBudget] = useState(0);
+  const [start, setStart] = useState(new Date());
+  const [daysSelect, setDaysSelect] = useState<number[]>([]);
+  const [total, setTotal] = useState(0);
 
-  function handleBudget() {
-    switch (people) {
+  function handleBudget(event: number) {
+    switch (event) {
       case 2:
-        setBudget(710 * days);
+        setBudget(710);
         break;
       case 3:
-        setBudget(850 * days);
+        setBudget(850);
         break;
       case 4:
-        setBudget(990 * days);
+        setBudget(990);
         break;
       case 5:
-        setBudget(1135 * days);
+        setBudget(1135);
         break;
       case 6:
-        setBudget(1275 * days);
+        setBudget(1275);
         break;
       default:
         setBudget(0);
     }
-
-    setPeople(0);
-    setDays(0);
   }
+
+  function handlePeriod(date: Date) {
+    setStart(date);
+    const gettingDay = date.getUTCDay();
+
+    const gettingPeriod = [];
+    let i = 0;
+    let value = gettingDay;
+    while (i !== days) {
+      gettingPeriod.push(value);
+      value++;
+      i++;
+      if (value === 7) {
+        value = 0;
+      }
+    }
+
+    setDaysSelect(gettingPeriod);
+  }
+
+  function getDiscounts() {
+    let price = 0;
+    daysSelect.map((item) => {
+      if (item === 5 || item === 6 || item === 0) {
+        price = price + budget;
+      } else {
+        price = price + budget - 0.15 * budget;
+      }
+    });
+    setTotal(price);
+  }
+
+  useEffect(() => {
+    handlePeriod(start);
+  }, [days]);
 
   return (
     <ReactModal
@@ -76,35 +111,51 @@ export const ModalChaleL = ({ isOpen, onRequestClose }: ModalProps) => {
 
         <p>Pessoas</p>
         <ModalSelectPeople
-          onChange={(event) => setPeople(Number(event.target.value))}
+          onChange={(event) => {
+            handleBudget(Number(event.target.value));
+          }}
+        />
+
+        <p>Selecione a data de início</p>
+        <DatePicker
+          selected={start}
+          onChange={handlePeriod}
+          dateFormat="dd/MM/yyyy"
+          className="date-picker"
         />
 
         <p>Diárias</p>
         <ModalInput
           placeholder="Digite a quantidade de diárias"
-          onChange={(event) => setDays(Number(event.target.value))}
+          onChange={(event) => {
+            setDays(Number(event.target.value));
+          }}
         />
 
         <p>O pagamento será integral?</p>
         <ModalSelect onChange={(event) => setPayment(event.target.value)} />
 
-        <ModalButton onClick={handleBudget} />
+        <ModalButton
+          onClick={() => {
+            getDiscounts();
+          }}
+        />
 
         <h3>
           Valor do orçamento: <br />
           {new Intl.NumberFormat("pt-BR", {
             style: "currency",
             currency: "BRL",
-          }).format(budget)}
+          }).format(total)}
         </h3>
 
         {payment === "Sim" && (
           <h3>
-            Valor do orçamento com desconto: <br />
+            Valor do orçamento com desconto pix: <br />
             {new Intl.NumberFormat("pt-BR", {
               style: "currency",
               currency: "BRL",
-            }).format(budget - 0.1 * budget)}
+            }).format(total - 0.1 * total)}
           </h3>
         )}
       </div>

@@ -54,15 +54,15 @@ export const ModalStandart = ({ isOpen, onRequestClose }: ModalProps) => {
     }
   }
 
-  function handleStartDate(date: Date) {
+  function handlePeriod(date: Date) {
     setStart(date);
-    const teste = date.getUTCDay();
+    const gettingDay = date.getUTCDay();
 
-    const arr = [];
+    const gettingPeriod = [];
     let i = 0;
-    let value = teste;
+    let value = gettingDay;
     while (i !== days) {
-      arr.push(value);
+      gettingPeriod.push(value);
       value++;
       i++;
       if (value === 7) {
@@ -70,7 +70,7 @@ export const ModalStandart = ({ isOpen, onRequestClose }: ModalProps) => {
       }
     }
 
-    setDaysSelect(arr);
+    setDaysSelect(gettingPeriod);
   }
 
   function getDiscounts() {
@@ -79,14 +79,14 @@ export const ModalStandart = ({ isOpen, onRequestClose }: ModalProps) => {
       if (item === 5 || item === 6 || item === 0) {
         price = price + budget;
       } else {
-        price = price + (budget - 5);
+        price = price + budget - 0.15 * budget;
       }
     });
     setTotal(price);
   }
 
   useEffect(() => {
-    handleStartDate(start);
+    handlePeriod(start);
   }, [days]);
 
   return (
@@ -116,10 +116,12 @@ export const ModalStandart = ({ isOpen, onRequestClose }: ModalProps) => {
           }}
         />
 
+        <p>Selecione a data de início</p>
         <DatePicker
           selected={start}
-          onChange={handleStartDate}
+          onChange={handlePeriod}
           dateFormat="dd/MM/yyyy"
+          className="date-picker"
         />
 
         <p>Diárias</p>
@@ -149,7 +151,7 @@ export const ModalStandart = ({ isOpen, onRequestClose }: ModalProps) => {
 
         {payment === "Sim" && (
           <h3>
-            Valor do orçamento com desconto: <br />
+            Valor do orçamento com desconto pix: <br />
             {new Intl.NumberFormat("pt-BR", {
               style: "currency",
               currency: "BRL",
