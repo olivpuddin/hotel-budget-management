@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "moment": "^2.29.3",
     "next": "^12.1.6-canary.6",
     "react": "18.0.0",
+    "react-datepicker": "^4.8.0",
     "react-dom": "18.0.0",
     "react-modal": "^3.14.4",
     "sass": "^1.50.0"
@@ -18,6 +20,7 @@
   "devDependencies": {
     "@types/node": "17.0.23",
     "@types/react": "18.0.1",
+    "@types/react-datepicker": "^4.4.1",
     "@types/react-dom": "18.0.0",
     "@types/react-modal": "^3.13.1",
     "eslint": "8.13.0",
