@@ -1,8 +1,7 @@
 // React
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactModal from "react-modal";
 import DatePicker from "react-datepicker";
-import moment from "moment";
 
 // components
 import { ModalButton } from "../ModalForm/ModalButton";
@@ -35,25 +34,24 @@ export const ModalStandart = ({ isOpen, onRequestClose }: ModalProps) => {
   function handleBudget(event: number) {
     switch (event) {
       case 2:
-        setBudget(615);
+        setBudget(630);
         break;
       case 3:
-        setBudget(745);
+        setBudget(760);
         break;
       case 4:
-        setBudget(865);
+        setBudget(880);
         break;
       case 5:
-        setBudget(985);
+        setBudget(995);
         break;
       case 6:
-        setBudget(1105);
+        setBudget(1125);
         break;
       default:
         setBudget(0);
     }
   }
-
   function handlePeriod(date: Date) {
     setStart(date);
     const gettingDay = date.getUTCDay();
@@ -72,7 +70,6 @@ export const ModalStandart = ({ isOpen, onRequestClose }: ModalProps) => {
 
     setDaysSelect(gettingPeriod);
   }
-
   function getDiscounts() {
     let price = 0;
     daysSelect.map((item) => {
@@ -83,6 +80,17 @@ export const ModalStandart = ({ isOpen, onRequestClose }: ModalProps) => {
       }
     });
     setTotal(price);
+  }
+
+  const daysRef = useRef(days);
+
+  function handleDays(event: any) {
+    let daily = Number(event.target.value);
+    if (event.target.value > daysRef.current) {
+      setDays(daily - 1);
+    }
+
+    daysRef.current = daily;
   }
 
   useEffect(() => {
@@ -126,9 +134,13 @@ export const ModalStandart = ({ isOpen, onRequestClose }: ModalProps) => {
 
         <p>Diárias</p>
         <ModalInput
+          type="number"
           placeholder="Digite a quantidade de diárias"
-          onChange={(event) => {
-            setDays(Number(event.target.value));
+          value={days}
+          onChange={(e) => {
+            if (!isNaN(e.target.value && e.target.value > 0)) {
+              handleDays(e);
+            }
           }}
         />
 
